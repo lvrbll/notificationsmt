@@ -1,13 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="100px">
-    <Button
-        android:layout_width="100dp"
+    android:layout_marginTop="12dp">
+
+    <ImageView
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="alo da"
-        android:id="@+id/message"/>
+        android:layout_width="match_parent"
+        android:src="@drawable/book"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ZOBACZ OPIS"
+        android:id="@+id/opis"
+        android:backgroundTint="#64B5F6"
+        android:textColor="#009688"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DODAJ DO CHCĘ PRZECZYTAĆ"
+        android:id="@+id/message"
+        android:backgroundTint="#64B5F6"
+        android:textColor="#009688"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PRZYPOMNIJ O KSIĄŻCE"
+        android:id="@+id/message1"
+        android:backgroundTint="#64B5F6"
+        android:textColor="#009688"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="O Książce"
+        android:id="@+id/bookdescTitle"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fascynująca powieść przygodowa, która wciągnie Cię od pierwszej strony."
+        android:id="@+id/bookdesc"
+        android:textColor="#3F51B5"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Chcę przeczytać..."
+        android:textColor="#008000"
+        android:textSize="50px"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#BDBDBD"/>
+
+
+
 </LinearLayout>

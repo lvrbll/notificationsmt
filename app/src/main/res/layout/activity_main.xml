@@ -1,45 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="12dp">
+    android:layout_marginTop="12dp"
+    android:id="@+id/main">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Moja Książka"
+        android:textColor="#212121"
+        android:textSize="80px"
+        android:id="@+id/bookTitle"/>
 
     <ImageView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:src="@drawable/book"/>
 
-    <Button
-        android:layout_width="match_parent"
+    <LinearLayout
         android:layout_height="wrap_content"
-        android:text="ZOBACZ OPIS"
-        android:id="@+id/opis"
-        android:backgroundTint="#64B5F6"
-        android:textColor="#009688"/>
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DODAJ DO CHCĘ PRZECZYTAĆ"
-        android:id="@+id/message"
-        android:backgroundTint="#64B5F6"
-        android:textColor="#009688"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="ZOBACZ OPIS"
+            android:id="@+id/btn1"
+            android:backgroundTint="#64B5F6"
+            android:textColor="#009688"/>
 
-    <Button
-        android:layout_width="match_parent"
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="DODAJ DO CHCĘ PRZECZYTAĆ"
+            android:id="@+id/btn2"
+            android:backgroundTint="#64B5F6"
+            android:textColor="#009688"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="PRZYPOMNIJ O KSIĄŻCE"
+            android:id="@+id/btn3"
+            android:backgroundTint="#64B5F6"
+            android:textColor="#009688"/>
+
+    </LinearLayout>
+
+    <TextView
         android:layout_height="wrap_content"
-        android:text="PRZYPOMNIJ O KSIĄŻCE"
-        android:id="@+id/message1"
-        android:backgroundTint="#64B5F6"
-        android:textColor="#009688"/>
+        android:layout_width="match_parent"
+        android:text="Dodano do listy 'Chcę przeczytać'"
+        android:textColor="#008000"
+        android:textSize="50px"
+        android:id="@+id/invText"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#BDBDBD"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="O Książce"
         android:id="@+id/bookdescTitle"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="#212121"
+        android:textSize="50px"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -47,20 +82,14 @@
         android:text="Fascynująca powieść przygodowa, która wciągnie Cię od pierwszej strony."
         android:id="@+id/bookdesc"
         android:textColor="#3F51B5"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textSize="40px"/>
 
     <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="Chcę przeczytać..."
-        android:textColor="#008000"
-        android:textSize="50px"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#BDBDBD"/>
-
-
+        android:textColor="#808080"
+        android:text="Autor: Artem Harashchenko"
+        android:textSize="30px"/>
 
 </LinearLayout>

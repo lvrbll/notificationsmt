@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,11 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private final String CHANNEL_ID = "CHANNEL_ID";
+    private Button checkDesc;
+    private Button AODList;
+    private Button remind;
+    private TextView bookTitle;
+    private TextView invText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,28 +36,53 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-
-        Button btn_m = findViewById(R.id.message);
-
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
         createNC();
 
-        btn_m.setOnClickListener(new View.OnClickListener() {
+
+        checkDesc = findViewById(R.id.btn1);
+        checkDesc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showN();
+                showDesc();
             }
         });
 
+        invText = findViewById(R.id.invText);
+        AODList = findViewById(R.id.btn2);
+        AODList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String temp = AODList.getText().toString();
+                if(temp.equals("DODAJ DO CHCĘ PRZECZYTAĆ")){
+                    invText.setVisibility(View.VISIBLE);
+                    AODList.setText("USUŃ Z CHCĘ PRZECZYTAĆ");
+                } else if(temp.equals("USUŃ Z CHCĘ PRZECZYTAĆ")){
+                    invText.setVisibility(View.GONE);
+                    AODList.setText("DODAJ DO CHCĘ PRZECZYTAĆ");
+                }
+            }
+        });
+
+        remind = findViewById(R.id.btn3);
+        remind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                remindBook();
+            }
+        });
     }
 
-    private void showN() {
-        String textTitle = "Glekowiadomienia";
-        String textContent = "Glekontent";
-        Log.d("s", "1");
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.pobrane);
+    private void showDesc() {
+        bookTitle = findViewById(R.id.bookTitle);
+        String textTitle = bookTitle.getText().toString();
+        String textContent = "Krótki opis: Ekscytująca historia pełna zwrotów akcji";
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.uwedom)
-                .setLargeIcon(largeIcon)
                 .setContentTitle(textTitle)
                 .setContentText(textContent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
@@ -61,14 +92,29 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1001);
             return;
         }
-        Log.d("s", "3");
+        notificationManager.notify(1, builder.build());
+    }
+
+    private void remindBook() {
+        bookTitle = findViewById(R.id.bookTitle);
+        String textTitle = bookTitle.getText().toString();
+        String textContent = "Pamiętaj, aby znaleźć czas na lekturę!";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.uwedom)
+                .setContentTitle(textTitle)
+                .setContentText(textContent)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1001);
+            return;
+        }
         notificationManager.notify(1, builder.build());
     }
 
     private void createNC(){
-        Log.d("c", "1");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Log.d("c", "2");
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
                     "channelName",

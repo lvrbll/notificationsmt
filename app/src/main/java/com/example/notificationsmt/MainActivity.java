@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String temp = AODList.getText().toString();
-                if(temp.equals("DODAJ DO CHCĘ PRZECZYTAĆ")){
+                if(AODList.getText().toString().equals("DODAJ DO CHCĘ PRZECZYTAĆ")){
                     invText.setVisibility(View.VISIBLE);
                     AODList.setText("USUŃ Z CHCĘ PRZECZYTAĆ");
                 } else if(temp.equals("USUŃ Z CHCĘ PRZECZYTAĆ")){
